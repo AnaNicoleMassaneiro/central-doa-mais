@@ -1,0 +1,38 @@
+<div class="form-container">
+    <h2>Disponibilizar Agendamentos</h2>
+
+    <div class="modal-content">
+        <button mat-icon-button class="close-button" (click)="closeModal()">
+          <mat-icon>close</mat-icon>
+      </button>
+
+        <!-- Conteúdo da modal aqui -->
+
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="form-content">
+        <div *ngFor="let date of formData.availableDates; let dateIndex = index" class="form-field">
+            <mat-form-field appearance="outline">
+                <mat-label>Data:</mat-label>
+                <input matInput type="date" id="date" name="date" [(ngModel)]="date.date" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Horários:</mat-label>
+                <mat-select multiple [(ngModel)]="date.availableTimeSlots" name="availableTimeSlots">
+                    <mat-option *ngFor="let timeSlot of timeSlots" [value]="timeSlot">{{ timeSlot }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+
+        <div class="form-field">
+            <mat-form-field appearance="outline">
+                <mat-label>ID do Hemobanco:</mat-label>
+                <input matInput type="number" id="hemobancoAddressId" name="hemobancoAddressId" [(ngModel)]="formData.hemobancoAddressId" required>
+            </mat-form-field>
+        </div>
+
+        <button color="primary" mat-raised-button class="btn-success">Cadastrar Agendamentos</button>
+    </form>
+</div>

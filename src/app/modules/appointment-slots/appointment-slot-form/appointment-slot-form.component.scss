@@ -1,0 +1,51 @@
+/* Em seu arquivo CSS ou SCSS */
+
+
+/* Em seu arquivo CSS ou SCSS */
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    /* Altura mínima do formulário */
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-field {
+    margin-bottom: 20px;
+    /* Espaço entre os campos */
+}
+
+
+/* appointment-slot-form.component.css */
+
+.modal-content {
+    position: relative;
+    /* Para posicionar elementos filhos com base nesta div */
+}
+
+.close-button {
+    position: absolute;
+    top: -150px;
+    /* Ajuste a posição vertical conforme necessário */
+    right: -150px;
+    /* Ajuste a posição horizontal conforme necessário */
+    background-color: transparent;
+    /* Botão transparente */
+    color: #000;
+    /* Cor do ícone (pode ser ajustada) */
+}
+
+.close-button:hover {
+    color: #f00;
+    /* Cor do ícone ao passar o mouse (pode ser ajustada) */
+    cursor: pointer;
+    /* Cursor de apontar ao passar o mouse */
+}

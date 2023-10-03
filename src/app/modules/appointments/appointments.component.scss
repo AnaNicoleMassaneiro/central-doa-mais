@@ -5,3 +5,30 @@
     margin-top: 150px;
     /* Isso centraliza horizontalmente */
 }
+
+
+/* Em seu arquivo CSS ou SCSS */
+
+.btn-success.mat-raised-button {
+    /* Seu estilo personalizado aqui */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 7px 12px;
+    gap: 4px;
+    width: 95px;
+    height: 34px;
+    background: #5CB85C;
+    border: 1px solid #4CAE4C;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+
+/* Qualquer estilo adicional para o botão aqui */
