@@ -8,14 +8,15 @@ import { AppointmentService } from './services/appointments.service';
   styleUrls: ['./appointments.component.scss']
 })
 export class AppointmentsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'email', 'cpf'];
-  dataSource = new MatTableDataSource<any>();
+  dataSource!: MatTableDataSource<any>; // Inicialize como MatTableDataSource<any>
+ // Inicialize como MatTableDataSource<any>
+  displayedColumns: string[] = ['date', 'time', 'hemobanco.address', 'hemobanco.city', 'hemobanco.state', 'hemobanco.zipCode', 'userId'];
 
-  constructor(private appService: AppointmentService) {}
+  constructor(private appointmentsService: AppointmentService) {}
 
-  ngOnInit() {
-    this.appService.getAppointment().subscribe(users => {
-      this.dataSource.data = users;
+  ngOnInit(): void {
+    this.appointmentsService.getAppointment().subscribe((data: any[]) => {
+      this.dataSource = new MatTableDataSource(data);
     });
   }
 }

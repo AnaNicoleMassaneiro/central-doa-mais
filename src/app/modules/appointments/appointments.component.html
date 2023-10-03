@@ -1,1 +1,35 @@
-<p>appointments works!</p>
+<div class="table-container">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">{{ appointment.date }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="time">
+            <mat-header-cell *matHeaderCellDef>Horario</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">{{ appointment.time }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="hemobanco.address">
+            <mat-header-cell *matHeaderCellDef>Endereço do Hemobanco</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">{{ appointment.hemobanco.address }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="hemobanco.city">
+            <mat-header-cell *matHeaderCellDef>Cidade</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">{{ appointment.hemobanco.city }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="hemobanco.state">
+            <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">{{ appointment.hemobanco.state }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="hemobanco.zipCode">
+            <mat-header-cell *matHeaderCellDef>CEP</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">{{ appointment.hemobanco.zipCode }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="userId">
+            <mat-header-cell *matHeaderCellDef>ID Do doador</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">{{ appointment.userId }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+</div>
