@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppointmentsComponent } from './modules/appointments/appointments.component';
 import { UserTableComponent } from './modules/User/user-table/user-table.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/users' }, // Rota padrão redireciona para a lista de usuários
-  { path: 'users', component: UserTableComponent },
-  // ... outras rotas se necessário
+  { path: '', component: UserTableComponent },
+  { path: 'usuarios', component: UserTableComponent },
+  { path: 'agendamentos', component: AppointmentsComponent },
 ];
 
 @NgModule({

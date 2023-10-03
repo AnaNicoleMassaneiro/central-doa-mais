@@ -9,9 +9,10 @@ import { UserTableComponent } from './modules/User/user-table/user-table.compone
 import { Router, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './modules/sidebar/sidebar.component';
+import { AppointmentsComponent } from './modules/appointments/appointments.component';
 
 @NgModule({
-  declarations: [AppComponent, UserTableComponent, SidebarComponent],
+  declarations: [AppComponent, UserTableComponent, SidebarComponent, AppointmentsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
