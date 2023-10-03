@@ -1,0 +1,33 @@
+/* Estilize a barra de navegação (navbar) */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    /* Centraliza verticalmente os itens */
+    background: #eed9d9;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilize o título */
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: auto;
+    /* Empurra o título para a esquerda, ocupando o espaço disponível */
+}
+
+
+/* Estilize os links de navegação */
+
+.nav-link {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nav-link:hover {
+    background: darken(#e95555, 10%);
+}
