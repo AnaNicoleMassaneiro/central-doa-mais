@@ -1,5 +1,7 @@
 <div class="table-container">
 
+    <h2>Visualizar agendamentos</h2>
+
     <button mat-raised-button color="primary" (click)="openAppointmentForm()">Adicionar Agendamento</button>
 
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -27,11 +29,26 @@
             <mat-header-cell *matHeaderCellDef>CEP</mat-header-cell>
             <mat-cell *matCellDef="let appointment">{{ appointment.hemobanco.zipCode }}</mat-cell>
         </ng-container>
-        <ng-container matColumnDef="userId">
-            <mat-header-cell *matHeaderCellDef>ID Do doador</mat-header-cell>
-            <mat-cell *matCellDef="let appointment">{{ appointment.userId }}</mat-cell>
+
+        <ng-container matColumnDef="completed">
+            <mat-header-cell *matHeaderCellDef>Realizado</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">
+                {{ appointment.completed ? 'Sim' : 'Não' }}
+            </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+            <mat-cell *matCellDef="let appointment">
+                <button mat-button color="primary" *ngIf="appointment.completed" (click)="provideExams(appointment.id)">
+                Disponibilizar Exames
+            </button>
+
+                <button mat-button color="primary" *ngIf="!appointment.completed" (click)="markAppointmentCompleted(appointment.id)">
+              Marcar Concluído
+          </button>
+            </mat-cell>
+        </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>

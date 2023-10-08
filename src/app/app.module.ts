@@ -19,10 +19,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppointmentsListComponent } from './modules/appointment-slots/appointments-list/appointments-list.component';
-import { MatSelectModule } from '@angular/material/select'; 
+import { MatSelectModule } from '@angular/material/select';
+import { UploadExamsModalComponent } from './modules/upload-exams-modal/upload-exams-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, UserTableComponent, SidebarComponent, AppointmentsComponent, AppointmentSlotsComponent, AppointmentSlotFormComponent, AppointmentsListComponent],
+  declarations: [AppComponent, UserTableComponent, SidebarComponent, AppointmentsComponent, AppointmentSlotsComponent, AppointmentSlotFormComponent, AppointmentsListComponent, UploadExamsModalComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

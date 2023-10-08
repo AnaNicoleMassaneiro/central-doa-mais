@@ -1,0 +1,5 @@
+<h1>Upload de Exames</h1>
+<form (ngSubmit)="uploadExams()" #uploadForm="ngForm">
+    <input type="file" (change)="onFileChange($event)" accept=".pdf" required>
+    <button type="submit" [disabled]="!selectedFile">Enviar</button>
+</form>

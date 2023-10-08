@@ -13,4 +13,10 @@ export class AppointmentService {
   getAppointment(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  markAppointmentAsCompleted(appointmentId: number): Observable<any> {
+    console.log(appointmentId)
+    const url = `${this.apiUrl}/${appointmentId}/complete`;
+    return this.http.put(url, null);
+  }
 }
