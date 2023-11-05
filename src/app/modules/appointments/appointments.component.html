@@ -37,18 +37,29 @@
             </mat-cell>
         </ng-container>
 
+
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
             <mat-cell *matCellDef="let appointment">
-                <button mat-button color="primary" *ngIf="appointment.completed" (click)="provideExams(appointment.id)">
-                Disponibilizar Exames
-            </button>
+                <ng-container *ngIf="pdfAvailabilityMap.get(appointment.id) && appointment.completed">
+                    <button mat-button color="primary" (click)="downloadPdf(appointment.id)">
+                  Baixar PDF
+                </button>
+                </ng-container>
+                <ng-container *ngIf="!pdfAvailabilityMap.get(appointment.id) && appointment.completed">
+                    <button mat-button color="primary" (click)="provideExams(appointment.id)">
+                  Disponibilizar Exames
+                </button>
+                </ng-container>
+                <ng-container *ngIf="!pdfAvailabilityMap.get(appointment.id) && !appointment.completed">
+                    <button mat-button color="primary" (click)="markAppointmentCompleted(appointment.id)">
+                  Marcar Concluído
+                </button>
+                </ng-container>
 
-                <button mat-button color="primary" *ngIf="!appointment.completed" (click)="markAppointmentCompleted(appointment.id)">
-              Marcar Concluído
-          </button>
             </mat-cell>
         </ng-container>
+
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>

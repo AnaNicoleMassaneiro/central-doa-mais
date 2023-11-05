@@ -6,6 +6,7 @@ import { UploadExamsModalComponent } from '../upload-exams-modal/upload-exams-mo
 import { ErrorModalComponent } from '../../shared/Modal/error-modal.component';
 import { AppointmentService } from './services/appointments.service';
 import { SuccessModalComponent } from 'src/app/shared/Modal/success-modal.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-appointments',
@@ -15,6 +16,8 @@ import { SuccessModalComponent } from 'src/app/shared/Modal/success-modal.compon
 export class AppointmentsComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = ['date', 'time', 'hemobanco.address', 'hemobanco.city', 'hemobanco.state', 'hemobanco.zipCode', 'completed', 'actions'];
+  isPdfAvailable: boolean[] = [];
+  pdfAvailabilityMap: Map<number, boolean> = new Map<number, boolean>();
 
   constructor(
     private appointmentsService: AppointmentService,
@@ -33,18 +36,24 @@ export class AppointmentsComponent implements OnInit {
   updatetable() {
     this.appointmentsService.getAppointment().subscribe((data: any[]) => {
       this.dataSource = new MatTableDataSource(data);
+
+      // Preencha o mapa com a disponibilidade do PDF
+      data.forEach(appointment => {
+        this.checkForPdf(appointment.id).subscribe(pdfAvailable => {
+          this.pdfAvailabilityMap.set(appointment.id, pdfAvailable);
+        });
+      });
     });
   }
 
 
   provideExams(appointmentId: number) {
     const dialogRef = this.dialog.open(UploadExamsModalComponent, {
-      width: '500px',
-      data: { appointmentId }
+      data: { appointmentId: appointmentId }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // Você pode executar ações aqui após o fechamento da modal, se necessário.
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('O modal foi fechado');
     });
   }
 
@@ -69,6 +78,32 @@ export class AppointmentsComponent implements OnInit {
     );
   }
 
- 
+  checkForPdf(appointmentId: string) {
+    console.log(appointmentId)
+    return this.appointmentsService.hasPdfForAppointment(appointmentId);
+  }
+
+  downloadPdf(appointmentId: number) {
+    this.appointmentsService.downloadPdfForAppointment(appointmentId).subscribe(
+      (pdf: Blob) => {
+        if (pdf.size > 0) {
+          // Crie um Blob de dados e defina o tipo de arquivo como 'application/pdf'
+          const blob = new Blob([pdf], { type: 'application/pdf' });
+
+          // Use a biblioteca file-saver para fazer o download do PDF
+          saveAs(blob, `appointment_${appointmentId}.pdf`);
+        } else {
+          // Trate o caso em que o PDF está vazio ou ocorreu um erro
+          console.error('O PDF está vazio ou ocorreu um erro durante o download.');
+        }
+      },
+      (error) => {
+        console.error('Erro ao baixar o PDF', error);
+      }
+    );
+  }
+
 
 }
+
+

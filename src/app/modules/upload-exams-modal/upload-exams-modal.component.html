@@ -3,3 +3,13 @@
     <input type="file" (change)="onFileChange($event)" accept=".pdf" required>
     <button type="submit" [disabled]="!selectedFile">Enviar</button>
 </form>
+
+<div *ngIf="errorModalMessage">
+    <!-- Aqui, você pode exibir a mensagem de erro em uma modal, caixa de diálogo ou outro elemento de UI. -->
+    <p>{{ errorModalMessage }}</p>
+</div>
+
+<div *ngIf="successMessage">
+    <!-- Exiba a mensagem de sucesso aqui, como um alerta ou modal -->
+    <div class="alert alert-success">{{ successMessage }}</div>
+</div>
